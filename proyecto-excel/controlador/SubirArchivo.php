@@ -5,8 +5,9 @@ if(isset($_POST)){
     $extencion = explode(".", $archivo);
     $ruta = "../archivos/".$archivo;
     if($extencion[1] == "xls" || $extencion[1] == "xlsx"){
-        if(chmod(move_uploaded_file($_FILES["file"]["tmp_name"],0777),$ruta)){
+        if(move_uploaded_file($_FILES["file"]["tmp_name"],$ruta)){
            echo "Archivo Cargado Con Éxito";
+           chmod($ruta, 0777);
         }else{
             echo "Error Al Cargar el Archivo";
         }    
